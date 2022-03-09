@@ -1,4 +1,7 @@
 pipeline {
+  agent{
+    label 'agent1'
+  }
   options {
     buildDiscarder(logRotator(numToKeepStr: '5'))
   }
@@ -6,7 +9,7 @@ pipeline {
     HEROKU_API_KEY = credentials('lcamposesp-heroku-api-key')
   }
   parameters { 
-    string(name: 'APP_NAME', defaultValue: '', description: 'What is the Heroku app name?') 
+    string(name: 'APP_NAME', defaultValue: '', description: 'Nombre de la app creada en Heroku') 
   }
   stages {
     stage('Build') {
